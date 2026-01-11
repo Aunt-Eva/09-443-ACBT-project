@@ -1,7 +1,7 @@
 import tkinter as tk
 from itertools import product
 
-# ===================== THEME =====================
+
 BG = "#edf0f5"
 LEFT_BG = "#f7f9fc"
 GRID = "#d0d6e5"
@@ -33,7 +33,7 @@ STATUS_FONT = ("Segoe UI", 10)
 TABLE_FONT = ("Segoe UI", 10)
 TABLE_CELL_W = 8
 
-# ===================== TOOLTIP =====================
+
 class ToolTip:
     def __init__(self, widget, text):
         self.widget = widget
@@ -65,7 +65,7 @@ class ToolTip:
             self.tip.destroy()
             self.tip = None
 
-# ===================== LOGIC =====================
+
 def AND(a, b): return a & b
 def OR(a, b): return a | b
 def XOR(a, b): return a ^ b
@@ -82,7 +82,7 @@ GATES = {
 def inputs_count(kind):
     return 1 if kind in ("NOT", "OUT") else 2
 
-# ===================== ROUNDED BUTTON =====================
+
 class RoundedButton(tk.Canvas):
     def __init__(self, parent, text, command, bg="#edf0fa"):
         super().__init__(parent, height=50, bg=LEFT_BG, highlightthickness=0)
@@ -108,7 +108,7 @@ class RoundedButton(tk.Canvas):
             fill=color, outline="#aaa", smooth=True
         )
 
-# ===================== GATE =====================
+
 class Gate:
     counter = {"IN": 0, "OUT": 0}
 
@@ -231,7 +231,7 @@ class Gate:
                 i.evaluate_recursive(visited)
         return self.evaluate()
 
-# ===================== WIRE =====================
+
 class Wire:
     def __init__(self, sim, src, dst, idx):
         self.sim = sim
@@ -254,7 +254,7 @@ class Wire:
             fill=COLORS["WIRE_ON"] if self.src.output_value else COLORS["WIRE_OFF"]
         )
 
-# ===================== SIMULATOR =====================
+
 class Simulator:
     def __init__(self, root):
         root.title("Интерактивный симулятор логических схем")
@@ -318,7 +318,7 @@ class Simulator:
             justify="left"
         ).pack(side="bottom", pady=8)
 
-        # ===== ИЗМЕНЕНИЕ ТОЛЬКО ЗДЕСЬ =====
+       
         self.canvas_frame = tk.Frame(root, bg="#bfc6d8", bd=2, relief="sunken")
         self.canvas_frame.pack(fill="both", expand=True)
 
@@ -328,7 +328,7 @@ class Simulator:
         self.truth_frame = tk.Frame(self.canvas_frame, bg="white", bd=2, relief="ridge", width=420)
         self.truth_frame.pack(side="right", fill="y", padx=6, pady=6)
         self.truth_frame.pack_propagate(False)
-        # =================================
+       
 
         self.status = tk.Label(
             root,
@@ -462,7 +462,7 @@ class Simulator:
                     width=TABLE_CELL_W, font=TABLE_FONT
                 ).grid(row=r, column=c)
 
-# ===================== RUN =====================
+
 root = tk.Tk()
 Simulator(root)
 root.mainloop()
